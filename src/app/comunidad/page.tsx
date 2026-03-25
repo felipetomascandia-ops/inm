@@ -23,7 +23,7 @@ type ContentBlock = {
 };
 
 type Section = {
-  id?: string;
+  id: string;
   title: string;
   icon: string;
   isShop?: boolean;
