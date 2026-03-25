@@ -315,7 +315,10 @@ export default function AdminPage() {
                         id={`editTitle-${index}`}
                         className="shadow appearance-none border rounded w-full py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-violet-100"
                         value={editingSection?.title || ''}
-                        onChange={(e) => setEditingSection({ ...editingSection, title: e.target.value })}
+                        onChange={(e) => setEditingSection(prevEditingSection => {
+                          const currentEditingSection = prevEditingSection!;
+                          return { ...currentEditingSection, title: e.target.value };
+                        })}
                         required
                       />
                     </div>
@@ -326,7 +329,10 @@ export default function AdminPage() {
                         id={`editIcon-${index}`}
                         className="shadow appearance-none border rounded w-full py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-violet-100"
                         value={editingSection?.icon || ''}
-                        onChange={(e) => setEditingSection({ ...editingSection, icon: e.target.value })}
+                        onChange={(e) => setEditingSection(prevEditingSection => {
+                          const currentEditingSection = prevEditingSection!;
+                          return { ...currentEditingSection, icon: e.target.value };
+                        })}
                         required
                       />
                     </div>
@@ -352,9 +358,12 @@ export default function AdminPage() {
                       ))}
                       <button
                         type="button"
-                        onClick={() => setEditingSection({
-                          ...editingSection,
-                          blocks: [...editingSection.blocks, { type: "paragraph", text: "" }]
+                        onClick={() => setEditingSection(prevEditingSection => {
+                          const currentEditingSection = prevEditingSection!;
+                          return {
+                            ...currentEditingSection,
+                            blocks: [...currentEditingSection.blocks, { type: "paragraph", text: "" }]
+                          };
                         })}
                         className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300 mt-4"
                       >
@@ -366,7 +375,10 @@ export default function AdminPage() {
                         id={`editIsShop-${index}`}
                         className="mr-2 leading-tight"
                         checked={editingSection?.isShop || false}
-                        onChange={(e) => setEditingSection({ ...editingSection, isShop: e.target.checked })}
+                        onChange={(e) => setEditingSection(prevEditingSection => {
+                          const currentEditingSection = prevEditingSection!;
+                          return { ...currentEditingSection, isShop: e.target.checked };
+                        })}
                       />
                       <label className="text-emerald-100 text-sm" htmlFor={`editIsShop-${index}`}>Es de tienda</label>
                     </div>
