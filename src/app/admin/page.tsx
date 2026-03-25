@@ -314,7 +314,7 @@ export default function AdminPage() {
                         type="text"
                         id={`editTitle-${index}`}
                         className="shadow appearance-none border rounded w-full py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-violet-100"
-                        value={editingSection.title}
+                        value={editingSection?.title || ''}
                         onChange={(e) => setEditingSection({ ...editingSection, title: e.target.value })}
                         required
                       />
@@ -325,14 +325,14 @@ export default function AdminPage() {
                         type="text"
                         id={`editIcon-${index}`}
                         className="shadow appearance-none border rounded w-full py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-violet-100"
-                        value={editingSection.icon}
+                        value={editingSection?.icon || ''}
                         onChange={(e) => setEditingSection({ ...editingSection, icon: e.target.value })}
                         required
                       />
                     </div>
                     <div className="mb-4">
                       <h3 className="text-xl font-bold mb-2 text-violet-300">Bloques de Contenido</h3>
-                      {editingSection.blocks.map((block, blockIndex) => (
+                      {editingSection?.blocks.map((block, blockIndex) => (
                         <ContentBlockEditor
                           key={blockIndex}
                           block={block}
@@ -365,7 +365,7 @@ export default function AdminPage() {
                         type="checkbox"
                         id={`editIsShop-${index}`}
                         className="mr-2 leading-tight"
-                        checked={editingSection.isShop || false}
+                        checked={editingSection?.isShop || false}
                         onChange={(e) => setEditingSection({ ...editingSection, isShop: e.target.checked })}
                       />
                       <label className="text-emerald-100 text-sm" htmlFor={`editIsShop-${index}`}>Es de tienda</label>
