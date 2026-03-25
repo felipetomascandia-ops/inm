@@ -13,6 +13,7 @@ type ContentBlock = {
 };
 
 type Section = {
+  id?: string;
   title: string;
   icon: string;
   isShop?: boolean;
@@ -112,12 +113,12 @@ export default function AdminPage() {
     }
   };
 
-  const handleDeleteSection = async (title: string) => {
+  const handleDeleteSection = async (id: string) => {
     setMessage("");
     const res = await fetch("/api/comunidad", {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ title }),
+      body: JSON.stringify({ id }),
     });
 
     if (res.ok) {
@@ -304,8 +305,8 @@ export default function AdminPage() {
           <h2 className="text-2xl font-bold mb-4 text-violet-300">Tarjetas Existentes</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {sections.map((section, index) => (
-              <div key={index} className="p-4 border rounded-lg bg-emerald-700/50 border-violet-400/20 shadow-md">
-                {editingSection?.title === section.title ? (
+              <div key={section.id} className="p-4 border rounded-lg bg-emerald-700/50 border-violet-400/20 shadow-md">
+                {editingSection?.id === section.id ? (
                   <form onSubmit={handleEditSection}>
                     <div className="mb-2">
                       <label className="block text-emerald-100 text-sm font-bold mb-1" htmlFor={`editTitle-${index}`}>Título:</label>
@@ -396,7 +397,7 @@ export default function AdminPage() {
                         Editar
                       </button>
                       <button
-                        onClick={() => handleDeleteSection(section.title)}
+                        onClick={() => handleDeleteSection(section.id)}
                         className="bg-red-600 hover:bg-red-700 text-white text-sm font-bold py-1 px-3 rounded transition duration-300"
                       >
                         Eliminar

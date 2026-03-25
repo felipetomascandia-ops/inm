@@ -23,6 +23,7 @@ type ContentBlock = {
 };
 
 type Section = {
+  id?: string;
   title: string;
   icon: string;
   isShop?: boolean;
@@ -86,7 +87,7 @@ export default function ComunidadPage() {
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {sections.map((item, index) => (
             <div
-              key={item.title}
+              key={item.id}
               onClick={() => setActive(index)}
               className="cursor-pointer group relative rounded-2xl border border-violet-400/10 bg-emerald-900/20 p-6 backdrop-blur-xl transition-all duration-500 hover:scale-105 hover:border-violet-500/40"
             >

@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { promises as fs } from 'fs';
-import path from 'path';
+import { supabase } from '@/lib/supabase';
 
 export async function POST(req: NextRequest) {
   try {
@@ -11,20 +10,26 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ message: 'No se ha proporcionado ningún archivo.' }, { status: 400 });
     }
 
-    const buffer = Buffer.from(await file.arrayBuffer());
     const filename = `${Date.now()}-${file.name}`;
-    const uploadDir = path.join(process.cwd(), 'public', 'uploads');
-    const filePath = path.join(uploadDir, filename);
+    const { data, error } = await supabase.storage
+      .from('card_images') // Assuming you have a bucket named 'card_images'
+      .upload(filename, file, { cacheControl: '3600', upsert: false });
 
-    // Ensure the upload directory exists
-    await fs.mkdir(uploadDir, { recursive: true });
+    if (error) {
+      console.error('Error uploading file to Supabase Storage:', error);
+      return NextResponse.json({ message: 'Error al subir el archivo a Supabase Storage.' }, { status: 500 });
+    }
 
-    await fs.writeFile(filePath, buffer);
+    // Get public URL of the uploaded file
+    const { data: publicUrlData } = supabase.storage
+      .from('card_images')
+      .getPublicUrl(filename);
 
-    const imageUrl = `/uploads/${filename}`;
+    const imageUrl = publicUrlData.publicUrl;
+
     return NextResponse.json({ imageUrl }, { status: 200 });
   } catch (error) {
-    console.error('Error uploading file:', error);
-    return NextResponse.json({ message: 'Error al subir el archivo.' }, { status: 500 });
+    console.error('Unexpected error in POST /api/upload:', error);
+    return NextResponse.json({ message: 'Error interno del servidor.' }, { status: 500 });
   }
 }
