@@ -1,0 +1,16 @@
+{
+  "/_global-error/page": "app/_global-error/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/admin/page": "app/admin/page.js",
+  "/api/admin/login/route": "app/api/admin/login/route.js",
+  "/api/comunidad/route": "app/api/comunidad/route.js",
+  "/api/fivem/route": "app/api/fivem/route.js",
+  "/api/upload/route": "app/api/upload/route.js",
+  "/comunidad/page": "app/comunidad/page.js",
+  "/discord/page": "app/discord/page.js",
+  "/jugadores/page": "app/jugadores/page.js",
+  "/page": "app/page.js",
+  "/presentacion/page": "app/presentacion/page.js",
+  "/sobre/page": "app/sobre/page.js",
+  "/unirse/page": "app/unirse/page.js"
+}

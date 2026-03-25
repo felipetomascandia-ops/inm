@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import Image from "next/image"
 
 const host = process.env.NEXT_PUBLIC_FIVEM_HOST || ""
 const port = process.env.NEXT_PUBLIC_FIVEM_PORT || ""
@@ -160,13 +161,13 @@ export default function ComunidadPage() {
                       )}
                       {block.type === "image" && block.imageUrl && (
                         <div className="mt-4 flex justify-center">
-                          <img src={block.imageUrl} alt={`Imagen ${blockIndex}`} className="max-w-full h-auto rounded-lg shadow-lg" />
+                          <Image src={block.imageUrl} alt={`Imagen ${blockIndex}`} className="max-w-full h-auto rounded-lg shadow-lg" width={500} height={300} />
                         </div>
                       )}
                       {block.type === "text-image" && (
                         <div className={`mt-4 flex flex-col ${block.imagePosition === "right" ? "md:flex-row items-center" : ""}`}>
                           {block.imagePosition === "top" && block.imageUrl && (
-                            <img src={block.imageUrl} alt={`Imagen ${blockIndex}`} className="max-w-full h-auto rounded-lg shadow-lg mb-4" />
+                            <Image src={block.imageUrl} alt={`Imagen ${blockIndex}`} className="max-w-full h-auto rounded-lg shadow-lg mb-4" width={500} height={300} />
                           )}
                           {block.text && (
                             <p className={`text-emerald-100/70 leading-relaxed ${block.imagePosition === "right" ? "md:mr-4" : ""}`}>
@@ -174,7 +175,7 @@ export default function ComunidadPage() {
                             </p>
                           )}
                           {(block.imagePosition === "bottom" || block.imagePosition === "right") && block.imageUrl && (
-                            <img src={block.imageUrl} alt={`Imagen ${blockIndex}`} className="max-w-full h-auto rounded-lg shadow-lg mt-4 md:mt-0" />
+                            <Image src={block.imageUrl} alt={`Imagen ${blockIndex}`} className="max-w-full h-auto rounded-lg shadow-lg mt-4 md:mt-0" width={500} height={300} />
                           )}
                         </div>
                       )}

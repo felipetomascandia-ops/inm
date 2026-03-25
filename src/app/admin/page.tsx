@@ -263,7 +263,7 @@ export default function AdminPage() {
                     setNewSection({ ...newSection, blocks: updatedBlocks });
                   }}
                   uploadingImage={uploadingImage}
-                  handleImageUpload={(file) => handleImageUpload(file, setNewSection, blockIndex)}
+                  handleImageUpload={(file) => handleImageUpload(file, setNewSection as React.Dispatch<React.SetStateAction<Section | null>>, blockIndex)}
                   message={message}
                 />
               ))}
@@ -345,7 +345,7 @@ export default function AdminPage() {
                             setEditingSection({ ...editingSection, blocks: updatedBlocks });
                           }}
                           uploadingImage={uploadingImage}
-                          handleImageUpload={(file) => handleImageUpload(file, setEditingSection, blockIndex)}
+                          handleImageUpload={(file) => handleImageUpload(file, setEditingSection as React.Dispatch<React.SetStateAction<Section | null>>, blockIndex)}
                           message={message}
                         />
                       ))}
