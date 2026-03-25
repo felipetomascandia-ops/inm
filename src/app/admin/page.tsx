@@ -409,7 +409,7 @@ export default function AdminPage() {
                         Editar
                       </button>
                       <button
-                        onClick={() => handleDeleteSection(section.id)}
+                        onClick={() => handleDeleteSection(section.id!)}
                         className="bg-red-600 hover:bg-red-700 text-white text-sm font-bold py-1 px-3 rounded transition duration-300"
                       >
                         Eliminar
