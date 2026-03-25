@@ -1,0 +1,33 @@
+[
+  {
+    "title": "Hola",
+    "icon": "👍",
+    "blocks": [
+      {
+        "type": "text-image",
+        "text": "Hola mi gnte aqui un auto",
+        "imageUrl": "/uploads/1774416592787-fivem-background.jpg",
+        "imagePosition": "top"
+      },
+      {
+        "type": "text-image",
+        "text": "Aqui otro",
+        "imageUrl": "/uploads/1774416822487-fivem-background.jpg",
+        "imagePosition": "bottom"
+      }
+    ]
+  },
+  {
+    "title": "Tienda Inmortal",
+    "icon": "💰",
+    "blocks": [
+      {
+        "type": "text-image",
+        "text": "Camioneta Urus\n\n13$",
+        "imageUrl": "/uploads/1774417080561-fivem-background.jpg",
+        "imagePosition": "bottom"
+      }
+    ],
+    "isShop": true
+  }
+]

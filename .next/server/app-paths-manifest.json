@@ -1,0 +1,8 @@
+{
+  "/unirse/page": "app/unirse/page.js",
+  "/comunidad/page": "app/comunidad/page.js",
+  "/admin/page": "app/admin/page.js",
+  "/sobre/page": "app/sobre/page.js",
+  "/page": "app/page.js",
+  "/api/fivem/route": "app/api/fivem/route.js"
+}
