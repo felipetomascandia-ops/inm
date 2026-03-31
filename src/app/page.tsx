@@ -46,26 +46,40 @@ export default function PresentacionPage() {
           </div>
         </div>
 
-        <div className="mt-10 flex items-stretch justify-center gap-4">
-          
-          <a
-            href={joinUrl}
-            className="relative inline-flex items-center justify-center px-8 text-base font-semibold text-white transition hover:scale-[1.05]"
-          >
-            <span className="absolute inset-0 rounded-2xl bg-gradient-to-r from-violet-500 to-emerald-600 blur-lg opacity-70"></span>
-            <span className="relative flex items-center justify-center rounded-2xl bg-gradient-to-r from-violet-500 to-emerald-600 px-8 py-3">
-              Conectarse al servidor
-            </span>
-          </a>
+<div className="mt-10 flex items-stretch justify-center gap-4">
 
-          <a
-            href="https://discord.gg/QRk8MMXvBD"
-            className="inline-flex items-center justify-center px-6 rounded-2xl border border-emerald-400/40 text-sm font-medium text-emerald-200 bg-violet-900/40 backdrop-blur-md transition-all hover:scale-105 hover:border-emerald-400/70 hover:bg-violet-900/60"
-          >
-            Unirse al servidor de Discord
-          </a>
+  {/* 🔥 NUEVO BOTÓN */}
+  <a
+    href="https://github.com/felipetomascandia-ops/inmortal-launcher/releases/latest/download/Inmortal.Launcher.Setup.exe"
+    download
+    className="relative inline-flex items-center justify-center px-8 text-base font-semibold text-white transition hover:scale-[1.05]"
+  >
+    <span className="absolute inset-0 rounded-2xl bg-gradient-to-r from-emerald-500 to-cyan-600 blur-lg opacity-70"></span>
+    <span className="relative flex items-center justify-center rounded-2xl bg-gradient-to-r from-emerald-500 to-cyan-600 px-8 py-3">
+      Descargar Launcher
+    </span>
+  </a>
 
-        </div>
+  {/* 🔥 TU BOTÓN ORIGINAL */}
+  <a
+    href={joinUrl}
+    className="relative inline-flex items-center justify-center px-8 text-base font-semibold text-white transition hover:scale-[1.05]"
+  >
+    <span className="absolute inset-0 rounded-2xl bg-gradient-to-r from-violet-500 to-emerald-600 blur-lg opacity-70"></span>
+    <span className="relative flex items-center justify-center rounded-2xl bg-gradient-to-r from-violet-500 to-emerald-600 px-8 py-3">
+      Conectarse al servidor
+    </span>
+  </a>
+
+  {/* 🔥 DISCORD */}
+  <a
+    href="https://discord.gg/QRk8MMXvBD"
+    className="inline-flex items-center justify-center px-6 rounded-2xl border border-emerald-400/40 text-sm font-medium text-emerald-200 bg-violet-900/40 backdrop-blur-md transition-all hover:scale-105 hover:border-emerald-400/70 hover:bg-violet-900/60"
+  >
+    Unirse al servidor de Discord
+  </a>
+
+</div>
       </div>
     </div>
   )

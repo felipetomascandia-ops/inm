@@ -28,6 +28,7 @@ export default function AdminPage() {
   const [sections, setSections] = useState<Section[]>([]);
   const [editingSection, setEditingSection] = useState<Section | null>(null);
   const [newSection, setNewSection] = useState<Section>({ title: "", icon: "", blocks: [] });
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -76,20 +77,47 @@ export default function AdminPage() {
 
   const handleAddSection = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isSubmitting) return;
     setMessage("");
-    const res = await fetch("/api/comunidad", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newSection),
-    });
+    setIsSubmitting(true);
+    const payload = {
+      title: newSection.title.trim(),
+      icon: newSection.icon.trim(),
+      blocks: Array.isArray(newSection.blocks) ? newSection.blocks : [],
+      ...(typeof newSection.isShop === "boolean" ? { isShop: newSection.isShop } : {})
+    };
 
-    if (res.ok) {
-      setMessage("Tarjeta añadida correctamente.");
-      setNewSection({ title: "", icon: "", blocks: [] });
-      fetchSections();
-    } else {
-      const data = await res.json();
-      setMessage(data.message || "Error al añadir la tarjeta.");
+    if (!payload.title || !payload.icon) {
+      setMessage("Completa título e icono antes de añadir la tarjeta.");
+      setIsSubmitting(false);
+      return;
+    }
+
+    try {
+      const res = await fetch("/api/comunidad", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      let responseBody: { message?: string } | null = null;
+      try {
+        responseBody = await res.json();
+      } catch {
+        responseBody = null;
+      }
+
+      if (res.ok) {
+        setMessage("Tarjeta añadida correctamente.");
+        setNewSection({ title: "", icon: "", blocks: [] });
+        fetchSections();
+      } else {
+        setMessage(responseBody?.message || "Error al añadir la tarjeta.");
+      }
+    } catch {
+      setMessage("Error de red al añadir la tarjeta.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -292,9 +320,10 @@ export default function AdminPage() {
             <div className="md:col-span-2">
               <button
                 type="submit"
+                disabled={isSubmitting || uploadingImage}
                 className="w-full bg-gradient-to-r from-violet-500 to-emerald-600 hover:from-violet-600 hover:to-emerald-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300"
               >
-                Añadir Tarjeta
+                {isSubmitting ? "Añadiendo..." : "Añadir Tarjeta"}
               </button>
             </div>
           </form>
